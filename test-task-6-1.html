@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 6.1 Verification Test</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            font-family: Arial, sans-serif;
+        }
+        .test-section {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-result {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Task 6.1 Verification: Wire Template System to Homepage</h1>
+        
+        <div class="test-section">
+            <h2>Template Containers</h2>
+            <div id="header-container" class="test-result info">
+                <p>Header container - waiting for template injection...</p>
+            </div>
+            <div id="nav-container" class="test-result info">
+                <p>Navigation container - waiting for template injection...</p>
+            </div>
+            <div id="footer-container" class="test-result info">
+                <p>Footer container - waiting for template injection...</p>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Test Results</h2>
+            <div id="test-results">
+                <div class="test-result info">Running tests...</div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>Requirements Verification</h2>
+            <div id="requirements-check">
+                <div class="test-result info">Checking requirements...</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/template.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const results = [];
+            const requirements = [];
+            
+            try {
+                // Test 1: Initialize template engine on page load
+                console.log('🧪 Test 1: Initialize template engine on page load');
+                if (window.templateEngine && typeof window.templateEngine.renderPage === 'function') {
+                    results.push('✅ Template engine initialized successfully on page load');
+                    console.log('✅ Template engine available and functional');
+                } else {
+                    results.push('❌ Template engine failed to initialize on page load');
+                    console.error('❌ Template engine not available');
+                    throw new Error('Template engine not available');
+                }
+                
+                // Test 2: Load and inject header, navigation, and footer components
+                console.log('🧪 Test 2: Load and inject components');
+                await window.templateEngine.renderPage({
+                    title: "Home",
+                    description: "Test page for template system verification",
+                    currentPage: "home"
+                });
+                
+                // Check if components were injected
+                const headerContent = document.querySelector('#header-container').innerHTML;
+                const navContent = document.querySelector('#nav-container').innerHTML;
+                const footerContent = document.querySelector('#footer-container').innerHTML;
+                
+                if (headerContent && headerContent.includes('header') && !headerContent.includes('waiting')) {
+                    results.push('✅ Header component loaded and injected successfully');
+                    console.log('✅ Header component injected');
+                } else {
+                    results.push('❌ Header component failed to load');
+                    console.error('❌ Header component not injected');
+                }
+                
+                if (navContent && navContent.includes('nav') && !navContent.includes('waiting')) {
+                    results.push('✅ Navigation component loaded and injected successfully');
+                    console.log('✅ Navigation component injected');
+                } else {
+                    results.push('❌ Navigation component failed to load');
+                    console.error('❌ Navigation component not injected');
+                }
+                
+                if (footerContent && footerContent.includes('footer') && !footerContent.includes('waiting')) {
+                    results.push('✅ Footer component loaded and injected successfully');
+                    console.log('✅ Footer component injected');
+                } else {
+                    results.push('❌ Footer component failed to load');
+                    console.error('❌ Footer component not injected');
+                }
+                
+                // Test 3: Set active navigation state for homepage
+                console.log('🧪 Test 3: Set active navigation state');
+                window.templateEngine.setActiveNavigation('home');
+                
+                // Wait a moment for DOM updates
+                setTimeout(() => {
+                    const activeLink = document.querySelector('.nav-links a[data-page="home"]');
+                    if (activeLink && activeLink.classList.contains('active')) {
+                        results.push('✅ Active navigation state set correctly for homepage');
+                        console.log('✅ Active navigation state set for home page');
+                    } else {
+                        results.push('❌ Active navigation state not set correctly');
+                        console.error('❌ Active navigation state not set');
+                    }
+                    
+                    // Requirements verification
+                    console.log('🧪 Verifying requirements compliance');
+                    
+                    // Requirement 2.1: JavaScript template system
+                    if (window.templateEngine && window.templateEngine.components) {
+                        requirements.push('✅ Requirement 2.1: JavaScript template system implemented');
+                    } else {
+                        requirements.push('❌ Requirement 2.1: JavaScript template system not implemented');
+                    }
+                    
+                    // Requirement 2.4: Template inheritance (assuming this refers to consistent structure)
+                    if (headerContent && navContent && footerContent) {
+                        requirements.push('✅ Requirement 2.4: Template inheritance/structure working');
+                    } else {
+                        requirements.push('❌ Requirement 2.4: Template inheritance/structure not working');
+                    }
+                    
+                    // Requirement 3.4: Navigation state management
+                    const activeNav = document.querySelector('.nav-links a.active');
+                    if (activeNav && activeNav.getAttribute('data-page') === 'home') {
+                        requirements.push('✅ Requirement 3.4: Navigation state management working');
+                    } else {
+                        requirements.push('❌ Requirement 3.4: Navigation state management not working');
+                    }
+                    
+                    // Display results
+                    displayResults(results, requirements);
+                }, 500);
+                
+            } catch (error) {
+                results.push(`❌ Critical error during testing: ${error.message}`);
+                console.error('Critical error:', error);
+                displayResults(results, requirements);
+            }
+        });
+        
+        function displayResults(results, requirements) {
+            // Display test results
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = results.map(result => {
+                const className = result.startsWith('✅') ? 'success' : 'error';
+                return `<div class="test-result ${className}">${result}</div>`;
+            }).join('');
+            
+            // Display requirements check
+            const requirementsDiv = document.getElementById('requirements-check');
+            requirementsDiv.innerHTML = requirements.map(req => {
+                const className = req.startsWith('✅') ? 'success' : 'error';
+                return `<div class="test-result ${className}">${req}</div>`;
+            }).join('');
+            
+            // Overall status
+            const hasErrors = [...results, ...requirements].some(item => item.startsWith('❌'));
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `test-result ${hasErrors ? 'error' : 'success'}`;
+            statusDiv.innerHTML = hasErrors ? 
+                '<strong>❌ Some tests failed. Task 6.1 needs attention.</strong>' : 
+                '<strong>✅ All tests passed! Task 6.1 completed successfully.</strong>';
+            
+            document.getElementById('test-results').appendChild(statusDiv);
+            
+            console.log('📊 Test Summary:');
+            console.log(`✅ Passed: ${[...results, ...requirements].filter(item => item.startsWith('✅')).length}`);
+            console.log(`❌ Failed: ${[...results, ...requirements].filter(item => item.startsWith('❌')).length}`);
+        }
+    </script>
+</body>
+</html>

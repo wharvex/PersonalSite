@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template System Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+    </style>
+</head>
+<body>
+    <h1>Template System Test</h1>
+    
+    <div id="header-container" class="test-section">
+        <p>Header will load here...</p>
+    </div>
+    
+    <div id="nav-container" class="test-section">
+        <p>Navigation will load here...</p>
+    </div>
+    
+    <div id="footer-container" class="test-section">
+        <p>Footer will load here...</p>
+    </div>
+    
+    <div id="test-results" class="test-section">
+        <h2>Test Results</h2>
+        <div id="results-content">Running tests...</div>
+    </div>
+    
+    <script src="js/template.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const results = [];
+            
+            try {
+                // Test 1: Check if template engine is available
+                if (window.templateEngine) {
+                    results.push('✅ Template engine loaded successfully');
+                } else {
+                    results.push('❌ Template engine not available');
+                    return;
+                }
+                
+                // Test 2: Initialize template system for homepage
+                await window.templateEngine.renderPage({
+                    title: "Home",
+                    description: "Test page for template system",
+                    currentPage: "home"
+                });
+                results.push('✅ Template system initialized successfully');
+                
+                // Test 3: Check if components were loaded
+                const headerContent = document.querySelector('#header-container').innerHTML;
+                const navContent = document.querySelector('#nav-container').innerHTML;
+                const footerContent = document.querySelector('#footer-container').innerHTML;
+                
+                if (headerContent && headerContent.includes('header')) {
+                    results.push('✅ Header component loaded');
+                } else {
+                    results.push('❌ Header component failed to load');
+                }
+                
+                if (navContent && navContent.includes('nav')) {
+                    results.push('✅ Navigation component loaded');
+                } else {
+                    results.push('❌ Navigation component failed to load');
+                }
+                
+                if (footerContent && footerContent.includes('footer')) {
+                    results.push('✅ Footer component loaded');
+                } else {
+                    results.push('❌ Footer component failed to load');
+                }
+                
+                // Test 4: Check active navigation state
+                window.templateEngine.setActiveNavigation('home');
+                const activeLink = document.querySelector('.nav-links a.active');
+                if (activeLink && activeLink.getAttribute('data-page') === 'home') {
+                    results.push('✅ Active navigation state set correctly');
+                } else {
+                    results.push('❌ Active navigation state not set correctly');
+                }
+                
+            } catch (error) {
+                results.push(`❌ Error during testing: ${error.message}`);
+            }
+            
+            // Display results
+            const resultsDiv = document.getElementById('results-content');
+            resultsDiv.innerHTML = results.join('<br>');
+            
+            // Set overall status
+            const hasErrors = results.some(result => result.startsWith('❌'));
+            resultsDiv.parentElement.className = hasErrors ? 'test-section error' : 'test-section success';
+        });
+    </script>
+</body>
+</html>

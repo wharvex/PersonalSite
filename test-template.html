@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template System Test</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <div id="header-container"></div>
+    <div id="nav-container"></div>
+    <main>
+        <h1>Template System Test</h1>
+        <p>This page tests if the template system is working correctly.</p>
+    </main>
+    <div id="footer-container"></div>
+    
+    <script src="js/template.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="verify-template.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded');
+            
+            // Run verification
+            setTimeout(() => {
+                console.log('Running template system verification...');
+            }, 100);
+            
+            if (window.templateEngine) {
+                window.templateEngine.renderPage({
+                    title: "Test",
+                    description: "Template system test page",
+                    currentPage: "home"
+                }).then(() => {
+                    console.log('Template system test successful');
+                    
+                    // Verify components were loaded
+                    setTimeout(() => {
+                        const headerLoaded = document.getElementById('header-container').innerHTML.trim() !== '';
+                        const navLoaded = document.getElementById('nav-container').innerHTML.trim() !== '';
+                        const footerLoaded = document.getElementById('footer-container').innerHTML.trim() !== '';
+                        
+                        console.log('Header loaded:', headerLoaded);
+                        console.log('Navigation loaded:', navLoaded);
+                        console.log('Footer loaded:', footerLoaded);
+                        
+                        if (headerLoaded && navLoaded && footerLoaded) {
+                            console.log('✅ All components loaded successfully!');
+                        } else {
+                            console.log('❌ Some components failed to load');
+                        }
+                    }, 500);
+                }).catch(error => {
+                    console.error('Template system test failed:', error);
+                });
+            } else {
+                console.error('Template engine not available');
+            }
+        });
+    </script>
+</body>
+</html>

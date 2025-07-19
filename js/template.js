@@ -373,3 +373,4 @@ class ComponentManager extends TemplateEngine {
 
 // Replace the global instance with the enhanced component manager
 window.templateEngine = new ComponentManager();
+window.ComponentManager = ComponentManager;

@@ -136,13 +136,25 @@
     <script>
         // Initialize template system for homepage
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof TemplateEngine !== 'undefined') {
-                const templateEngine = new TemplateEngine();
-                templateEngine.renderPage({
-                    title: "Home - Your Name | Professional Portfolio",
+            // Initialize template engine on page load
+            if (window.templateEngine && typeof window.templateEngine.renderPage === 'function') {
+                // Load and inject header, navigation, and footer components
+                window.templateEngine.renderPage({
+                    title: "Home",
                     description: "Personal portfolio website showcasing accomplishments, credentials, and professional background",
                     currentPage: "home"
+                }).then(() => {
+                    // Set active navigation state for homepage
+                    window.templateEngine.setActiveNavigation('home');
+                    console.log('Homepage template system initialized successfully');
+                    console.log('Header, navigation, and footer components loaded');
+                    console.log('Active navigation state set to: home');
+                }).catch(error => {
+                    console.error('Error initializing homepage template system:', error);
+                    // Graceful degradation - page remains functional
                 });
+            } else {
+                console.warn('Template engine not available, falling back to static content');
             }
         });
     </script>
