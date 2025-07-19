@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional work history, education, credentials, and accomplishments">
+    <meta name="keywords" content="experience, work history, education, credentials, accomplishments, resume">
+    <meta name="author" content="Your Name">
+    <title>Experience - Your Name | Professional Portfolio</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Template containers for common elements -->
+    <div id="header-container"></div>
+    <div id="nav-container"></div>
+    
+    <!-- Main content area -->
+    <main id="main-content" class="experience-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>Professional Experience</h1>
+                <p class="page-subtitle">Work history, education, and credentials</p>
+            </div>
+        </section>
+        
+        <section class="experience-content">
+            <div class="container">
+                <div class="experience-section">
+                    <h2>Work Experience</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020 - Present</div>
+                            <div class="timeline-content">
+                                <h3>Senior Position Title</h3>
+                                <h4>Company Name</h4>
+                                <p>Description of role, responsibilities, and key accomplishments. Highlight specific achievements that demonstrate value delivered to the organization and showcase relevant skills for potential employers.</p>
+                                <ul class="accomplishments">
+                                    <li>Key accomplishment or project outcome</li>
+                                    <li>Quantifiable result or improvement achieved</li>
+                                    <li>Leadership or collaboration highlight</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018 - 2020</div>
+                            <div class="timeline-content">
+                                <h3>Previous Position Title</h3>
+                                <h4>Previous Company Name</h4>
+                                <p>Description of previous role and key contributions. Focus on growth, learning, and value creation that builds a compelling professional narrative.</p>
+                                <ul class="accomplishments">
+                                    <li>Notable project or achievement</li>
+                                    <li>Skill development or certification earned</li>
+                                    <li>Process improvement or innovation implemented</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2016 - 2018</div>
+                            <div class="timeline-content">
+                                <h3>Earlier Position Title</h3>
+                                <h4>Earlier Company Name</h4>
+                                <p>Foundation role that established core professional skills and experience. Demonstrate progression and continuous growth throughout career.</p>
+                                <ul class="accomplishments">
+                                    <li>Foundation skills developed</li>
+                                    <li>Early career achievement</li>
+                                    <li>Professional development milestone</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="education-section">
+                    <h2>Education</h2>
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <h3>Degree Title</h3>
+                            <h4>University Name</h4>
+                            <p class="education-date">Graduation Year</p>
+                            <p>Relevant coursework, honors, or achievements that support professional qualifications.</p>
+                        </div>
+                        
+                        <div class="education-item">
+                            <h3>Additional Certification or Degree</h3>
+                            <h4>Institution Name</h4>
+                            <p class="education-date">Completion Year</p>
+                            <p>Specialized training or certification that enhances professional credentials.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="credentials-section">
+                    <h2>Credentials & Certifications</h2>
+                    <div class="credentials-grid">
+                        <div class="credential-item">
+                            <h4>Professional Certification Name</h4>
+                            <p>Issuing Organization - Year Obtained</p>
+                        </div>
+                        <div class="credential-item">
+                            <h4>Technical Certification</h4>
+                            <p>Certifying Body - Year Obtained</p>
+                        </div>
+                        <div class="credential-item">
+                            <h4>Industry Recognition</h4>
+                            <p>Awarding Organization - Year Received</p>
+                        </div>
+                        <div class="credential-item">
+                            <h4>Additional Qualification</h4>
+                            <p>Credentialing Authority - Year Earned</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-section">
+                    <h2>Core Competencies</h2>
+                    <div class="skills-categories">
+                        <div class="skill-category">
+                            <h4>Technical Skills</h4>
+                            <ul class="skills-list">
+                                <li>Programming Languages</li>
+                                <li>Frameworks & Technologies</li>
+                                <li>Development Tools</li>
+                                <li>Database Management</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Professional Skills</h4>
+                            <ul class="skills-list">
+                                <li>Project Management</li>
+                                <li>Team Leadership</li>
+                                <li>Strategic Planning</li>
+                                <li>Client Relations</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Industry Knowledge</h4>
+                            <ul class="skills-list">
+                                <li>Domain Expertise</li>
+                                <li>Best Practices</li>
+                                <li>Compliance Standards</li>
+                                <li>Market Trends</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Template container for footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Template system scripts -->
+    <script src="js/template.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        // Initialize template system for experience page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof TemplateEngine !== 'undefined') {
+                const templateEngine = new TemplateEngine();
+                templateEngine.renderPage({
+                    title: "Experience - Your Name | Professional Portfolio",
+                    description: "Professional work history, education, credentials, and accomplishments",
+                    currentPage: "experience"
+                });
+            }
+        });
+    </script>
+</body>
+</html>

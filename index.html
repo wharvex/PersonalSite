@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal portfolio website showcasing accomplishments, credentials, and professional background">
+    <meta name="keywords" content="portfolio, professional, developer, resume, experience">
+    <meta name="author" content="Your Name">
+    <title>Home - Your Name | Professional Portfolio</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Template containers for common elements -->
+    <div id="header-container"></div>
+    <div id="nav-container"></div>
+    
+    <!-- Main content area -->
+    <main id="main-content" class="homepage">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Welcome to My Professional Portfolio</h1>
+                <p class="hero-subtitle">Showcasing my accomplishments, credentials, and professional journey</p>
+                <div class="hero-cta">
+                    <a href="about.html" class="btn btn-primary">Learn More About Me</a>
+                    <a href="projects.html" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="highlights-section">
+            <div class="container">
+                <h2>Key Highlights</h2>
+                <div class="highlights-grid">
+                    <div class="highlight-card">
+                        <h3>Professional Experience</h3>
+                        <p>Years of experience in developing innovative solutions and leading successful projects.</p>
+                        <a href="experience.html" class="highlight-link">View Experience →</a>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Notable Projects</h3>
+                        <p>Portfolio of accomplished work demonstrating technical skills and creative problem-solving.</p>
+                        <a href="projects.html" class="highlight-link">View Projects →</a>
+                    </div>
+                    <div class="highlight-card">
+                        <h3>Get In Touch</h3>
+                        <p>Ready to discuss opportunities and collaborate on exciting new ventures.</p>
+                        <a href="contact.html" class="highlight-link">Contact Me →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="intro-section">
+            <div class="container">
+                <h2>About This Portfolio</h2>
+                <p>This website serves as a comprehensive showcase of my professional accomplishments, technical credentials, and personal interests. It's designed to provide potential employers and collaborators with a clear understanding of my qualifications and background.</p>
+                <p>Navigate through the different sections to explore my experience, view my projects, and learn more about my professional journey.</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Template container for footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Template system scripts -->
+    <script src="js/template.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        // Initialize template system for homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof TemplateEngine !== 'undefined') {
+                const templateEngine = new TemplateEngine();
+                templateEngine.renderPage({
+                    title: "Home - Your Name | Professional Portfolio",
+                    description: "Personal portfolio website showcasing accomplishments, credentials, and professional background",
+                    currentPage: "home"
+                });
+            }
+        });
+    </script>
+</body>
+</html>

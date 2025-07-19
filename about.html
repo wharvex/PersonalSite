@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about my personal background, professional summary, and qualifications">
+    <meta name="keywords" content="about, background, professional, qualifications, biography">
+    <meta name="author" content="Your Name">
+    <title>About - Your Name | Professional Portfolio</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Template containers for common elements -->
+    <div id="header-container"></div>
+    <div id="nav-container"></div>
+    
+    <!-- Main content area -->
+    <main id="main-content" class="about-page">
+        <section class="page-header">
+            <div class="container">
+                <h1>About Me</h1>
+                <p class="page-subtitle">Personal background and professional summary</p>
+            </div>
+        </section>
+        
+        <section class="about-content">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>Professional Summary</h2>
+                        <p>Welcome to my professional portfolio. I am a dedicated professional with a passion for creating innovative solutions and delivering exceptional results. My background combines technical expertise with strong problem-solving abilities and a commitment to continuous learning.</p>
+                        
+                        <h3>Core Strengths</h3>
+                        <ul class="strengths-list">
+                            <li>Technical proficiency and innovative problem-solving</li>
+                            <li>Strong communication and collaboration skills</li>
+                            <li>Commitment to quality and attention to detail</li>
+                            <li>Adaptability and continuous learning mindset</li>
+                            <li>Leadership and project management experience</li>
+                        </ul>
+                        
+                        <h3>Personal Interests</h3>
+                        <p>Beyond my professional work, I am passionate about technology trends, continuous learning, and contributing to meaningful projects. I believe in the importance of work-life balance and enjoy exploring new technologies and methodologies that can enhance both personal and professional growth.</p>
+                    </div>
+                    
+                    <div class="about-sidebar">
+                        <div class="profile-card">
+                            <div class="profile-image">
+                                <!-- Profile image placeholder -->
+                                <div class="image-placeholder">Profile Photo</div>
+                            </div>
+                            <h3>Quick Facts</h3>
+                            <ul class="quick-facts">
+                                <li><strong>Location:</strong> Your City, State</li>
+                                <li><strong>Experience:</strong> X+ Years</li>
+                                <li><strong>Specialization:</strong> Your Field</li>
+                                <li><strong>Education:</strong> Your Degree</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="values-section">
+                    <h2>Professional Values</h2>
+                    <div class="values-grid">
+                        <div class="value-item">
+                            <h4>Excellence</h4>
+                            <p>Committed to delivering high-quality work that exceeds expectations and drives meaningful results.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>Innovation</h4>
+                            <p>Embracing new technologies and creative approaches to solve complex challenges effectively.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>Collaboration</h4>
+                            <p>Building strong relationships and working effectively with diverse teams to achieve common goals.</p>
+                        </div>
+                        <div class="value-item">
+                            <h4>Growth</h4>
+                            <p>Continuously learning and adapting to stay current with industry trends and best practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Template container for footer -->
+    <div id="footer-container"></div>
+    
+    <!-- Template system scripts -->
+    <script src="js/template.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        // Initialize template system for about page
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof TemplateEngine !== 'undefined') {
+                const templateEngine = new TemplateEngine();
+                templateEngine.renderPage({
+                    title: "About - Your Name | Professional Portfolio",
+                    description: "Learn about my personal background, professional summary, and qualifications",
+                    currentPage: "about"
+                });
+            }
+        });
+    </script>
+</body>
+</html>
