@@ -385,13 +385,25 @@
     <script>
         // Initialize template system for projects page
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof TemplateEngine !== 'undefined') {
-                const templateEngine = new TemplateEngine();
-                templateEngine.renderPage({
-                    title: "Projects - Your Name | Professional Portfolio",
+            // Initialize template engine on page load
+            if (window.templateEngine && typeof window.templateEngine.renderPage === 'function') {
+                // Load and inject header, navigation, and footer components
+                window.templateEngine.renderPage({
+                    title: "Projects",
                     description: "Portfolio of work and accomplishments showcasing technical skills and project outcomes",
                     currentPage: "projects"
+                }).then(() => {
+                    // Set active navigation state for projects page
+                    window.templateEngine.setActiveNavigation('projects');
+                    console.log('Projects page template system initialized successfully');
+                    console.log('Header, navigation, and footer components loaded');
+                    console.log('Active navigation state set to: projects');
+                }).catch(error => {
+                    console.error('Error initializing projects page template system:', error);
+                    // Graceful degradation - page remains functional
                 });
+            } else {
+                console.warn('Template engine not available, falling back to static content');
             }
         });
     </script>

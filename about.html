@@ -181,13 +181,25 @@
     <script>
         // Initialize template system for about page
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof TemplateEngine !== 'undefined') {
-                const templateEngine = new TemplateEngine();
-                templateEngine.renderPage({
-                    title: "About - Your Name | Professional Portfolio",
+            // Initialize template engine on page load
+            if (window.templateEngine && typeof window.templateEngine.renderPage === 'function') {
+                // Load and inject header, navigation, and footer components
+                window.templateEngine.renderPage({
+                    title: "About",
                     description: "Learn about my personal background, professional summary, and qualifications",
                     currentPage: "about"
+                }).then(() => {
+                    // Set active navigation state for about page
+                    window.templateEngine.setActiveNavigation('about');
+                    console.log('About page template system initialized successfully');
+                    console.log('Header, navigation, and footer components loaded');
+                    console.log('Active navigation state set to: about');
+                }).catch(error => {
+                    console.error('Error initializing about page template system:', error);
+                    // Graceful degradation - page remains functional
                 });
+            } else {
+                console.warn('Template engine not available, falling back to static content');
             }
         });
     </script>

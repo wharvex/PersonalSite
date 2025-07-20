@@ -151,7 +151,6 @@ a:hover {
 /* Main Content Area */
 main {
     min-height: calc(100vh - 200px);
-    padding-top: 2rem;
 }
 
 /* Responsive Images */
@@ -411,24 +410,27 @@ epage Specific Styles */
 }
 
 .btn-primary {
-    background-color: #fff;
-    color: #667eea;
+    background-color: #3498db;
+    color: #ffffff;
+    border: 2px solid #3498db;
 }
 
 .btn-primary:hover {
-    background-color: #f8f9fa;
-    color: #667eea;
+    background-color: #2980b9;
+    color: #ffffff;
+    border-color: #2980b9;
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+    background-color: #2c3e50;
+    color: #ffffff;
+    border: 2px solid #2c3e50;
 }
 
 .btn-secondary:hover {
-    background-color: #fff;
-    color: #667eea;
+    background-color: #34495e;
+    color: #ffffff;
+    border-color: #34495e;
 }
 
 /* Accomplishments Section */
@@ -678,14 +680,14 @@ Page Specific Styles */
 
 /* Page Header */
 .page-header {
-    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-    color: white;
-    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #2c3e50;
+    padding: 3rem 0;
     text-align: center;
 }
 
 .page-header h1 {
-    color: white;
+    color: #2c3e50;
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
 }

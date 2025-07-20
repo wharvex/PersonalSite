@@ -27,7 +27,7 @@ class NavigationController {
   detectCurrentPage() {
     const path = window.location.pathname;
     const filename = path.split('/').pop() || 'index.html';
-    
+
     // Map filenames to page IDs
     const pageMap = {
       'index.html': 'home',
@@ -84,14 +84,14 @@ class NavigationController {
    */
   handleNavigationClick(event, link) {
     const pageId = link.getAttribute('data-page');
-    
+
     if (pageId) {
       // Update current page state
       this.setCurrentPage(pageId);
-      
+
       // Close mobile menu if open
       this.closeMobileMenu();
-      
+
       // Add loading state (optional visual feedback)
       this.addLoadingState(link);
     }
@@ -159,9 +159,9 @@ class NavigationController {
 
       // Close mobile menu when clicking outside
       document.addEventListener('click', (event) => {
-        if (this.mobileMenuOpen && 
-            !navToggle.contains(event.target) && 
-            !navLinks.contains(event.target)) {
+        if (this.mobileMenuOpen &&
+          !navToggle.contains(event.target) &&
+          !navLinks.contains(event.target)) {
           this.closeMobileMenu();
         }
       });
@@ -185,13 +185,13 @@ class NavigationController {
 
     if (navLinks && navToggle) {
       this.mobileMenuOpen = !this.mobileMenuOpen;
-      
+
       navLinks.classList.toggle('nav-links-active', this.mobileMenuOpen);
       navToggle.classList.toggle('nav-toggle-active', this.mobileMenuOpen);
-      
+
       // Update ARIA attributes
       navToggle.setAttribute('aria-expanded', this.mobileMenuOpen.toString());
-      
+
       // Focus management
       if (this.mobileMenuOpen) {
         const firstLink = navLinks.querySelector('a');
@@ -208,7 +208,7 @@ class NavigationController {
   closeMobileMenu() {
     if (this.mobileMenuOpen) {
       this.mobileMenuOpen = false;
-      
+
       const navLinks = document.querySelector('.nav-links');
       const navToggle = document.querySelector('.nav-toggle');
 
@@ -247,19 +247,19 @@ class NavigationController {
         const nextIndex = (currentIndex + 1) % navLinks.length;
         navLinks[nextIndex].focus();
         break;
-        
+
       case 'ArrowUp':
       case 'ArrowLeft':
         event.preventDefault();
         const prevIndex = (currentIndex - 1 + navLinks.length) % navLinks.length;
         navLinks[prevIndex].focus();
         break;
-        
+
       case 'Home':
         event.preventDefault();
         navLinks[0].focus();
         break;
-        
+
       case 'End':
         event.preventDefault();
         navLinks[navLinks.length - 1].focus();
@@ -273,7 +273,7 @@ class NavigationController {
    */
   addLoadingState(link) {
     link.classList.add('loading');
-    
+
     // Remove loading state after a short delay
     setTimeout(() => {
       link.classList.remove('loading');
@@ -331,13 +331,13 @@ const NavigationUtils = {
    */
   getBreadcrumb(currentPage) {
     const breadcrumb = [{ title: 'Home', url: 'index.html' }];
-    
+
     if (currentPage !== 'home') {
       const navController = window.navigationController;
       const pageInfo = navController.getCurrentPageInfo();
       breadcrumb.push({ title: pageInfo.title, url: pageInfo.url });
     }
-    
+
     return breadcrumb;
   },
 
@@ -346,7 +346,7 @@ const NavigationUtils = {
    */
   preloadPages() {
     const commonPages = ['about.html', 'projects.html'];
-    
+
     commonPages.forEach(page => {
       const link = document.createElement('link');
       link.rel = 'prefetch';
@@ -360,7 +360,7 @@ const NavigationUtils = {
 document.addEventListener('DOMContentLoaded', () => {
   window.navigationController = new NavigationController();
   window.navigationController.init();
-  
+
   // Preload common pages
   NavigationUtils.preloadPages();
 });

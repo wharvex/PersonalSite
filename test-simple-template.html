@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Template Test - Portfolio Website</title>
+    <meta name="description" content="Testing the simplified template system">
+    
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Template containers -->
+    <div id="header-container"></div>
+    <div id="nav-container"></div>
+    
+    <main id="main-content" class="container">
+        <div class="section">
+            <h1 class="section-title">Simple Template System Test</h1>
+            
+            <div class="card">
+                <h2>Template Engine Status</h2>
+                <div id="status-display">
+                    <p>Loading template engine...</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Component Loading Test</h2>
+                <button class="btn" onclick="testComponentLoading()">Test Component Loading</button>
+                <div id="test-results" style="margin-top: 1rem;">
+                    <!-- Test results will appear here -->
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <!-- Load JavaScript -->
+    <script src="js/template.js"></script>
+    
+    <script>
+        // Simple test functions
+        function updateStatus() {
+            const statusDiv = document.getElementById('status-display');
+            
+            if (window.templateEngine) {
+                statusDiv.innerHTML = `
+                    <p style="color: green;">✅ Template Engine: Ready</p>
+                    <p>Components registered: ${window.templateEngine.components.size}</p>
+                    <p>Variables set: ${window.templateEngine.variables.size}</p>
+                `;
+            } else {
+                statusDiv.innerHTML = `
+                    <p style="color: red;">❌ Template Engine: Not available</p>
+                `;
+            }
+        }
+        
+        function testComponentLoading() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '<p>Testing component loading...</p>';
+            
+            try {
+                // Create a test container
+                const testContainer = document.createElement('div');
+                testContainer.id = 'test-container';
+                testContainer.style.border = '1px solid #ddd';
+                testContainer.style.padding = '1rem';
+                testContainer.style.marginTop = '1rem';
+                testContainer.style.borderRadius = '5px';
+                
+                // Test loading header component
+                window.templateEngine.loadComponent('header', testContainer, {
+                    siteName: 'Test Portfolio',
+                    tagline: 'Testing Template System'
+                });
+                
+                resultsDiv.innerHTML = `
+                    <p style="color: green;">✅ Component loading test passed!</p>
+                    <p>Header component loaded successfully with custom variables.</p>
+                `;
+                resultsDiv.appendChild(testContainer);
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <p style="color: red;">❌ Component loading test failed!</p>
+                    <p>Error: ${error.message}</p>
+                `;
+            }
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Initializing simple template test...');
+            
+            // Update status display
+            updateStatus();
+            
+            // Wait for template engine to be ready
+            if (window.templateEngine) {
+                try {
+                    // Render the page
+                    window.templateEngine.renderPage({
+                        currentPage: 'test',
+                        title: 'Simple Template Test',
+                        description: 'Testing the simplified template system'
+                    });
+                    
+                    console.log('Page rendering completed successfully');
+                    updateStatus();
+                    
+                } catch (error) {
+                    console.error('Error rendering page:', error);
+                }
+            } else {
+                console.error('Template engine not available');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -154,20 +154,35 @@
     <script>
         // Initialize template system for contact page
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof TemplateEngine !== 'undefined') {
-                const templateEngine = new TemplateEngine();
-                templateEngine.renderPage({
-                    title: "Contact - Your Name | Professional Portfolio",
+            // Initialize template engine on page load
+            if (window.templateEngine && typeof window.templateEngine.renderPage === 'function') {
+                // Load and inject header, navigation, and footer components
+                window.templateEngine.renderPage({
+                    title: "Contact",
                     description: "Professional contact information and networking details for collaboration opportunities",
                     currentPage: "contact"
+                }).then(() => {
+                    // Set active navigation state for contact page
+                    window.templateEngine.setActiveNavigation('contact');
+                    console.log('Contact page template system initialized successfully');
+                    console.log('Header, navigation, and footer components loaded');
+                    console.log('Active navigation state set to: contact');
+                }).catch(error => {
+                    console.error('Error initializing contact page template system:', error);
+                    // Graceful degradation - page remains functional
+                });
+            } else {
+                console.warn('Template engine not available, falling back to static content');
+            }
+            
+            // Basic form handling (for demonstration)
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! In a live implementation, this would be sent to the website owner.');
                 });
             }
-        });
-        
-        // Basic form handling (for demonstration)
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! In a live implementation, this would be sent to the website owner.');
         });
     </script>
 </body>

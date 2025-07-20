@@ -451,13 +451,25 @@
     <script>
         // Initialize template system for experience page
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof TemplateEngine !== 'undefined') {
-                const templateEngine = new TemplateEngine();
-                templateEngine.renderPage({
-                    title: "Experience - Your Name | Professional Portfolio",
+            // Initialize template engine on page load
+            if (window.templateEngine && typeof window.templateEngine.renderPage === 'function') {
+                // Load and inject header, navigation, and footer components
+                window.templateEngine.renderPage({
+                    title: "Experience",
                     description: "Professional work history, education, credentials, and accomplishments",
                     currentPage: "experience"
+                }).then(() => {
+                    // Set active navigation state for experience page
+                    window.templateEngine.setActiveNavigation('experience');
+                    console.log('Experience page template system initialized successfully');
+                    console.log('Header, navigation, and footer components loaded');
+                    console.log('Active navigation state set to: experience');
+                }).catch(error => {
+                    console.error('Error initializing experience page template system:', error);
+                    // Graceful degradation - page remains functional
                 });
+            } else {
+                console.warn('Template engine not available, falling back to static content');
             }
         });
     </script>

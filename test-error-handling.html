@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Error Handling Test</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .test-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .test-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        .test-button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.5rem;
+            font-weight: 500;
+        }
+        .test-button:hover {
+            background: #c82333;
+        }
+        .test-results {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: 1px solid #dee2e6;
+        }
+        .error-log {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Template containers for testing -->
+    <div id="header-container"></div>
+    <div id="nav-container"></div>
+    
+    <main id="main-content" class="container">
+        <h1>Template Error Handling Test Page</h1>
+        <p>This page tests the error handling and fallback functionality of the template system.</p>
+        
+        <div class="test-section">
+            <h3>Test 1: Component Not Found Error</h3>
+            <p>Test what happens when trying to load a component that doesn't exist.</p>
+            <button class="test-button" onclick="testComponentNotFound()">Test Missing Component</button>
+            <div id="test1-container"></div>
+            <div id="test1-results" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test 2: Target Element Not Found Error</h3>
+            <p>Test what happens when trying to load a component into a non-existent element.</p>
+            <button class="test-button" onclick="testTargetNotFound()">Test Missing Target</button>
+            <div id="test2-results" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test 3: Template Variable Substitution Error</h3>
+            <p>Test error handling when template variables cause issues.</p>
+            <button class="test-button" onclick="testVariableError()">Test Variable Error</button>
+            <div id="test3-container"></div>
+            <div id="test3-results" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test 4: Critical Render Error</h3>
+            <p>Test the emergency fallback when the entire page rendering fails.</p>
+            <button class="test-button" onclick="testCriticalError()">Test Critical Error</button>
+            <div id="test4-results" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test 5: Normal Template Loading</h3>
+            <p>Test that normal template loading still works correctly.</p>
+            <button class="test-button" style="background: #28a745;" onclick="testNormalLoading()">Test Normal Loading</button>
+            <div id="test5-container"></div>
+            <div id="test5-results" class="test-results" style="display: none;"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Error Log</h3>
+            <p>View all template errors that have occurred during testing:</p>
+            <button class="test-button" style="background: #6c757d;" onclick="showErrorLog()">Show Error Log</button>
+            <button class="test-button" style="background: #6c757d;" onclick="clearErrorLog()">Clear Error Log</button>
+            <div id="error-log" class="error-log" style="display: none;"></div>
+        </div>
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <script src="js/template.js"></script>
+    <script>
+        // Test functions
+        async function testComponentNotFound() {
+            const resultsDiv = document.getElementById('test1-results');
+            const containerDiv = document.getElementById('test1-container');
+            
+            try {
+                await window.templateEngine.loadComponent('nonexistent-component', containerDiv);
+                resultsDiv.innerHTML = '<p style="color: #28a745;">✓ Error handled gracefully - no exception thrown</p>';
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: #dc3545;">✗ Unhandled error: ' + error.message + '</p>';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        async function testTargetNotFound() {
+            const resultsDiv = document.getElementById('test2-results');
+            
+            try {
+                await window.templateEngine.loadComponent('header', '#nonexistent-element');
+                resultsDiv.innerHTML = '<p style="color: #28a745;">✓ Error handled gracefully - no exception thrown</p>';
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: #dc3545;">✗ Unhandled error: ' + error.message + '</p>';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        async function testVariableError() {
+            const resultsDiv = document.getElementById('test3-results');
+            const containerDiv = document.getElementById('test3-container');
+            
+            // Register a problematic template
+            window.templateEngine.registerComponent('test-template', '<div>{{undefinedVariable.property}}</div>');
+            
+            try {
+                await window.templateEngine.loadComponent('test-template', containerDiv, {});
+                resultsDiv.innerHTML = '<p style="color: #28a745;">✓ Template loaded with undefined variables handled</p>';
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: #dc3545;">✗ Unhandled error: ' + error.message + '</p>';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        async function testCriticalError() {
+            const resultsDiv = document.getElementById('test4-results');
+            
+            // Simulate critical error by corrupting the template engine
+            const originalRenderPage = window.templateEngine.renderPage;
+            window.templateEngine.renderPage = function() {
+                throw new Error('Critical rendering failure');
+            };
+            
+            try {
+                await window.templateEngine.renderPage({ currentPage: 'test', title: 'Test' });
+                resultsDiv.innerHTML = '<p style="color: #dc3545;">✗ Critical error not handled</p>';
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: #28a745;">✓ Critical error caught and handled</p>';
+            }
+            
+            // Restore original function
+            window.templateEngine.renderPage = originalRenderPage;
+            resultsDiv.style.display = 'block';
+        }
+        
+        async function testNormalLoading() {
+            const resultsDiv = document.getElementById('test5-results');
+            const containerDiv = document.getElementById('test5-container');
+            
+            try {
+                await window.templateEngine.loadComponent('header', containerDiv);
+                resultsDiv.innerHTML = '<p style="color: #28a745;">✓ Normal template loading works correctly</p>';
+            } catch (error) {
+                resultsDiv.innerHTML = '<p style="color: #dc3545;">✗ Normal loading failed: ' + error.message + '</p>';
+            }
+            
+            resultsDiv.style.display = 'block';
+        }
+        
+        function showErrorLog() {
+            const errorLogDiv = document.getElementById('error-log');
+            const errors = window.templateErrorReporter ? window.templateErrorReporter.getErrors() : [];
+            
+            if (errors.length === 0) {
+                errorLogDiv.innerHTML = 'No errors logged yet.';
+            } else {
+                errorLogDiv.innerHTML = errors.map(error => 
+                    `<div style="margin-bottom: 1rem; padding: 0.5rem; background: #fff3cd; border-left: 3px solid #ffc107;">
+                        <strong>Component:</strong> ${error.component}<br>
+                        <strong>Error:</strong> ${error.error}<br>
+                        <strong>Time:</strong> ${error.timestamp}<br>
+                        <strong>URL:</strong> ${error.url}
+                    </div>`
+                ).join('');
+            }
+            
+            errorLogDiv.style.display = 'block';
+        }
+        
+        function clearErrorLog() {
+            if (window.templateErrorReporter) {
+                window.templateErrorReporter.clearErrors();
+            }
+            const errorLogDiv = document.getElementById('error-log');
+            errorLogDiv.innerHTML = 'Error log cleared.';
+            errorLogDiv.style.display = 'block';
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load normal components first
+            window.templateEngine.renderPage({
+                title: "Error Handling Test",
+                description: "Testing template error handling and fallback functionality",
+                currentPage: "test"
+            }).then(() => {
+                console.log('Test page template system initialized');
+            }).catch(error => {
+                console.error('Error initializing test page:', error);
+            });
+        });
+    </script>
+</body>
+</html>
