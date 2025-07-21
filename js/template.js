@@ -180,25 +180,15 @@ const ComponentTemplates = {
         <div class="footer-content">
           <div class="footer-section">
             <h3>{{siteName}}</h3>
+          </div>
+          <div class="footer-section">
             <p>{{footerDescription}}</p>
           </div>
           <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul class="footer-links">
-              <li><a href="index.html">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="experience.html">Experience</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Connect</h4>
-            <div class="social-links">
-              <a href="{{linkedinUrl}}" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
-              <a href="{{githubUrl}}" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
-              <a href="mailto:{{email}}" aria-label="Email">Email</a>
-            </div>
+            <a href="#top" class="back-to-top-link">
+              <span class="back-to-top-icon">↑</span>
+              Back to Top
+            </a>
           </div>
         </div>
         <div class="footer-bottom">
