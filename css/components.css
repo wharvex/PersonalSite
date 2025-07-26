@@ -110,6 +110,11 @@
     margin-bottom: 0;
 }
 
+/* Add extra space between experience page header and timeline */
+.experience-page .experience-content {
+    padding-top: 3rem;
+}
+
 .header-social .social-link {
     display: flex;
     align-items: center;
@@ -379,7 +384,7 @@
     content: '';
     position: absolute;
     left: 0;
-    top: 0;
+    top: -3rem;
     bottom: 0;
     width: 2px;
     background-color: #3498db;
