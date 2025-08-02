@@ -119,15 +119,17 @@
     display: flex;
     align-items: center;
     padding: 0.3rem 0.75rem;
-    color: #ecf0f1;
+    color: #2c3e50;
     text-decoration: none;
-    border: 1px solid rgba(236, 240, 241, 0.3);
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     transition: all 0.3s ease;
     font-size: 0.8rem;
     font-weight: 500;
     min-width: 70px;
     justify-content: center;
+    text-align: center;
 }
 
 .header-social .social-link:hover {
@@ -519,6 +521,7 @@
 
 /* Responsive Design for Components */
 @media (max-width: 768px) {
+
     /* Header Responsive */
     .header-container {
         padding: 0 0.5rem;
@@ -526,30 +529,30 @@
         text-align: center;
         gap: 1rem;
     }
-    
+
     .header-tagline {
         margin-top: 0.5rem;
     }
-    
+
     .header-social {
         justify-content: center;
         margin-top: 1rem;
     }
-    
+
     .header-social .social-link {
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
     }
-    
+
     /* Navigation Responsive */
     .nav-container {
         padding: 0 0.5rem;
     }
-    
+
     .nav-toggle {
         display: flex;
     }
-    
+
     .nav-links {
         display: none;
         position: absolute;
@@ -560,81 +563,83 @@
         flex-direction: column;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
-    
+
     .nav-links.active {
         display: flex;
     }
-    
+
     .nav-links a {
         padding: 1rem;
         border-bottom: 1px solid #2c3e50;
         border-left: none;
     }
-    
+
     /* Hero Section Responsive */
     .hero-content h1 {
         font-size: 2rem;
     }
-    
+
     .hero-content .subtitle {
         font-size: 1rem;
     }
-    
+
     /* Timeline Responsive */
     .timeline {
         padding-left: 1rem;
     }
-    
+
     .timeline-item {
         padding-left: 1rem;
     }
-    
+
     /* Footer Responsive */
     .footer-content {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .social-links {
         justify-content: center;
     }
-    
+
     /* Form Responsive */
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-form {
         padding: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
+
     /* Profile Image Responsive */
     .profile-image {
         width: 150px;
         height: 150px;
     }
-    
+
     /* Skills Grid Responsive */
     .skills-grid {
         grid-template-columns: 1fr;
     }
-    
+
     /* Project Tags Responsive */
     .project-tags {
         justify-content: center;
     }
-    
+
     /* Hero Section Mobile */
     .hero-content h1 {
         font-size: 1.75rem;
     }
-    
+
     .hero-section {
         padding: 2rem 0;
     }
 }
+
 /* Proje
 cts Page Specific Components */
 .projects-page .page-header {
@@ -725,9 +730,9 @@ cts Page Specific Components */
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    column-count: auto;
+    column-width: 350px;
+    column-gap: 2rem;
     margin-bottom: 4rem;
 }
 
@@ -738,6 +743,10 @@ cts Page Specific Components */
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     position: relative;
+    break-inside: avoid;
+    margin-bottom: 2rem;
+    display: inline-block;
+    width: 100%;
 }
 
 .project-card:hover {
@@ -754,7 +763,7 @@ cts Page Specific Components */
     position: absolute;
     top: 0;
     left: 0;
-    background: #3498db;
+    background: #8B1538;
     color: white;
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
@@ -777,6 +786,14 @@ cts Page Specific Components */
     justify-content: center;
 }
 
+/* Override image placeholder for project cards */
+.project-card .image-placeholder {
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    background: #f8f9fa;
+}
+
 .project-status {
     position: absolute;
     top: 1rem;
@@ -794,7 +811,7 @@ cts Page Specific Components */
 }
 
 .status-badge.featured {
-    background: #3498db;
+    background: #8B1538;
     color: white;
 }
 
@@ -1053,53 +1070,53 @@ cts Page Specific Components */
     .projects-page .page-header h1 {
         font-size: 2rem;
     }
-    
+
     .portfolio-stats {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
         padding: 1.5rem;
     }
-    
+
     .stat-number {
         font-size: 2rem;
     }
-    
+
     .project-filters {
         gap: 0.5rem;
     }
-    
+
     .filter-btn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
     }
-    
+
     .projects-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .project-metrics {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
-    
+
     .metric-value {
         font-size: 1.25rem;
     }
-    
+
     .opensource-stats {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
-    
+
     .project-links {
         flex-direction: column;
     }
-    
+
     .projects-cta h2 {
         font-size: 1.5rem;
     }
-    
+
     .projects-cta p {
         font-size: 1rem;
     }
@@ -1109,44 +1126,46 @@ cts Page Specific Components */
     .projects-page .page-header {
         padding: 2rem 0;
     }
-    
+
     .projects-page .page-header h1 {
         font-size: 1.75rem;
     }
-    
+
     .portfolio-stats {
         grid-template-columns: 1fr;
         padding: 1rem;
     }
-    
+
     .project-content {
         padding: 1.5rem;
     }
-    
+
     .project-content h3 {
         font-size: 1.2rem;
     }
-    
+
     .project-achievements,
     .project-stats,
     .monitoring-features {
         flex-direction: column;
     }
-    
+
     .tech-tags {
         justify-content: center;
     }
-    
+
     .projects-cta {
         padding: 2rem 1rem;
     }
 }
+
 /* Animation for project filtering */
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1178,7 +1197,7 @@ cts Page Specific Components */
 }
 
 .contact-content {
-    padding: 5rem 0;
+    padding: 3rem 0;
 }
 
 .contact-intro {
@@ -1208,6 +1227,60 @@ cts Page Specific Components */
     font-size: 1.8rem;
     border-bottom: 3px solid #3498db;
     padding-bottom: 0.5rem;
+}
+
+.networks-heading {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #8B1538;
+    padding-bottom: 0.5rem;
+}
+
+.network-methods {
+    margin-bottom: 3rem;
+}
+
+.network-method {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #8B1538;
+    transition: transform 0.3s ease;
+}
+
+.network-method:hover {
+    transform: translateY(-3px);
+}
+
+.network-method h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.network-method p {
+    margin-bottom: 0.5rem;
+}
+
+.network-method a {
+    color: #8B1538;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.network-method a:hover {
+    color: #6B0F2A;
+}
+
+.network-note {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 0;
 }
 
 .contact-methods {
@@ -1266,58 +1339,79 @@ cts Page Specific Components */
     font-size: 1.3rem;
 }
 
-.social-links {
+.professional-links .social-links {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
+.contact-info .professional-links .social-link {
+    display: block;
+    width: 100%;
+    padding: 1.5rem;
     background: white;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     transition: all 0.3s ease;
     border-left: 4px solid transparent;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
 }
 
-.social-link:hover {
+.contact-info .professional-links .social-link span {
+    display: block;
+    width: 100%;
+}
+
+.contact-info .professional-links .social-link .social-icon {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info .professional-links .social-link .social-text {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.professional-links .social-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.social-link.linkedin {
+.professional-links .social-link.linkedin {
     border-left-color: #0077b5;
 }
 
-.social-link.linkedin:hover {
+.professional-links .social-link.linkedin:hover {
     background: #f0f8ff;
 }
 
-.social-link.github {
+.professional-links .social-link.github {
     border-left-color: #333;
 }
 
-.social-link.github:hover {
+.professional-links .social-link.github:hover {
     background: #f8f9fa;
 }
 
-.social-link.portfolio {
+.professional-links .social-link.portfolio {
     border-left-color: #3498db;
 }
 
-.social-link.portfolio:hover {
+.professional-links .social-link.portfolio:hover {
     background: #f0f8ff;
 }
 
-.social-link.resume {
+.professional-links .social-link.resume {
     border-left-color: #e74c3c;
 }
 
-.social-link.resume:hover {
+.professional-links .social-link.resume:hover {
     background: #fdf2f2;
 }
 
@@ -1418,11 +1512,11 @@ cts Page Specific Components */
     text-align: center;
 }
 
-.availability-section h2 {
+.availability-heading {
     color: #2c3e50;
     margin-bottom: 2rem;
     font-size: 1.8rem;
-    border-bottom: 3px solid #3498db;
+    border-bottom: 3px solid #27ae60;
     padding-bottom: 0.5rem;
     display: inline-block;
 }
@@ -1464,50 +1558,50 @@ cts Page Specific Components */
     .contact-page .page-header {
         padding: 3rem 0;
     }
-    
+
     .contact-page .page-header h1 {
         font-size: 2rem;
     }
-    
+
     .contact-content {
         padding: 3rem 0;
     }
-    
+
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
+
     .contact-info h2,
     .contact-form-section h2 {
         font-size: 1.5rem;
     }
-    
+
     .contact-method {
         padding: 1rem;
     }
-    
+
     .social-links {
         gap: 0.75rem;
     }
-    
+
     .social-link {
         padding: 0.75rem;
     }
-    
+
     .contact-form {
         padding: 1.5rem;
     }
-    
+
     .availability-section {
         padding: 2rem;
     }
-    
+
     .availability-info {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .availability-status,
     .response-time,
     .preferred-contact {
@@ -1519,58 +1613,59 @@ cts Page Specific Components */
     .contact-page .page-header {
         padding: 2rem 0;
     }
-    
+
     .contact-page .page-header h1 {
         font-size: 1.75rem;
     }
-    
+
     .contact-page .page-subtitle {
         font-size: 1rem;
     }
-    
+
     .contact-content {
         padding: 2rem 0;
     }
-    
+
     .contact-intro p {
         font-size: 1rem;
     }
-    
+
     .contact-grid {
         gap: 2rem;
     }
-    
+
     .contact-method {
         padding: 0.75rem;
     }
-    
-    .social-link {
+
+    .header-social .social-link {
         padding: 0.5rem;
         flex-direction: column;
         text-align: center;
         gap: 0.5rem;
     }
-    
-    .social-icon {
+
+    .header-social .social-icon {
         min-width: auto;
     }
-    
+
     .contact-form {
         padding: 1rem;
     }
-    
+
     .btn-primary {
         padding: 0.75rem 1.5rem;
     }
-    
+
     .availability-section {
         padding: 1.5rem;
     }
-    
+
     .availability-section h2 {
         font-size: 1.5rem;
     }
 }
+
 /* 
 Template Fallback Styles */
 .template-fallback {
@@ -1708,20 +1803,20 @@ Template Fallback Styles */
     .emergency-fallback main {
         padding: 1rem !important;
     }
-    
+
     .emergency-fallback nav a {
         display: block;
         margin: 0.25rem 0 !important;
         padding: 0.75rem !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
+
     .basic-nav a {
         display: block;
         margin: 0.25rem 0 !important;
         padding: 0.75rem !important;
     }
-    
+
     .template-fallback::before {
         font-size: 0.6rem;
         padding: 0.2rem 0.4rem;
@@ -1730,15 +1825,16 @@ Template Fallback Styles */
 
 /* Print Styles for Fallback Content */
 @media print {
+
     .template-fallback::before,
     .template-error::before {
         display: none;
     }
-    
+
     .template-fallback {
         border: none !important;
     }
-    
+
     .emergency-fallback nav,
     .basic-nav {
         display: none;

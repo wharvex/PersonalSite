@@ -182,7 +182,7 @@ const ComponentTemplates = {
             <h3>{{siteName}}</h3>
           </div>
           <div class="footer-section">
-            <p>{{footerDescription}}</p>
+            <p><em>{{footerDescription}}</em></p>
           </div>
           <div class="footer-section">
             <a href="#top" class="back-to-top-link">
